@@ -10,14 +10,13 @@
 <script>
 import { useGameStore } from "./../stores/game.store";
 import { useHelperComposable } from "../composables/helperComposable";
-import { useMergeBlocksComposable } from "../composables/mergeBlocksComposable";
 
 export default {
   name: "SingleRow",
   setup() {
     const store = useGameStore();
-    const { getCurrentBlock, blockDefault } = useHelperComposable();
-    const { mergeSimilarBlocks } = useMergeBlocksComposable();
+    const { updateBlock, getCurrentBlock, blockDefault } =
+      useHelperComposable();
 
     function moveBlockEvent(event) {
       const blockClone = getCurrentBlock().cloneNode(true);
@@ -26,11 +25,8 @@ export default {
       addBlockToRow(row, blockClone);
 
       store.updateBoard(store.currentBlockValue, rowPos);
-      store.updateCurrentBlockValue();
-      store.updateLastMove([rowPos, row]);
-      setTimeout(() => {
-        mergeSimilarBlocks(store);
-      }, 300);
+      updateBlock(store);
+      store.updateLastMove([rowPos, row, blockClone]);
     }
     function addBlockToRow(row, blockClone) {
       const rowPos = Number.parseInt(row.getAttribute("rowPos")) - 1;

@@ -6,6 +6,7 @@ export const useGameStore = defineStore("game", {
     score: 0,
     level: 1,
     currentBlockValue: 2,
+    blocksBackgroundColor: {},
   }),
   getters: {
     // blockValue: (state) => {
@@ -41,15 +42,19 @@ export const useGameStore = defineStore("game", {
     },
     updateCurrentBlockValue() {
       this.currentBlockValue =
-        2 **
-        (Math.floor(Math.random() * (this.level * 6 - this.level)) +
-          this.level);
+        2 ** (Math.floor(Math.random() * 5) + this.level);
     },
     removeValueFromBoard(rowPos, blockPos) {
       this.board[rowPos].splice(blockPos, 1);
     },
     incrementLevel() {
       this.level++;
+    },
+    updateBlocksBackgroundColor(value, hsl) {
+      this.blocksBackgroundColor = {
+        ...this.blocksBackgroundColor,
+        [value]: hsl,
+      };
     },
   },
 });

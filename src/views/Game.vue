@@ -8,6 +8,10 @@
 import GameBoard from "../components/GameBoard.vue";
 import { useGameStore } from "../stores/game.store";
 // import { useMainComposable } from "../composables/mainComposable";
+import { useLevelComposable } from "../composables/levelComposable";
+import { useMergeBlocksComposable } from "../composables/mergeBlocksComposable";
+import { useHelperComposable } from "../composables/helperComposable";
+import { onMounted, watch } from "vue";
 
 export default {
   name: "Game",
@@ -15,17 +19,37 @@ export default {
   setup() {
     const store = useGameStore();
     // const {main} = useMainComposable();
+    const { mergeSimilarBlocks } = useMergeBlocksComposable();
+    const { hasReachedCheckpoint, raiseLevel } = useLevelComposable();
+    const { updateBlock, updateLastMoveBlockBackground } =
+      useHelperComposable();
 
-    init();
+    onMounted(init);
 
     function init() {
       // store.empty ? loadSave()  : newGame
-      store.updateCurrentBlockValue();
+      updateBlock(store);
     }
+    // watch board
+    watch(
+      () => store.lastMove,
+      () => {
+        updateLastMoveBlockBackground(store);
+
+        setTimeout(() => {
+          mergeSimilarBlocks(store);
+        }, 300);
+      }
+    );
+    // watch score
+    watch(
+      () => store.score,
+      () => {
+        if (hasReachedCheckpoint(store)) raiseLevel(store);
+      }
+    );
+    return {};
   },
-  watch: {
-    
-  }
 };
 </script>
 

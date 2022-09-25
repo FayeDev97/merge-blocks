@@ -91,7 +91,7 @@ export function useMergeBlocksComposable() {
     block.classList.add("fading-to-right");
     setTimeout(() => {
       leftRow.removeChild(block);
-    }, 200);
+    }, 300);
   }
   function removeRight(store, row, rowPos, blockPos) {
     const rightRow = row.nextSibling;
@@ -100,7 +100,7 @@ export function useMergeBlocksComposable() {
     store.removeValueFromBoard(rowPos + 1, blockPos);
     setTimeout(() => {
       rightRow.removeChild(block);
-    }, 200);
+    }, 300);
   }
   function removeBottom(store, row, rowPos, blockPos) {
     const block = row.children[blockPos];
@@ -108,17 +108,14 @@ export function useMergeBlocksComposable() {
     store.removeValueFromBoard(rowPos, -1);
     setTimeout(() => {
       row.removeChild(row.children[blockPos]);
-    }, 200);
+    }, 300);
   }
   function setNewBlockValue(store, row, rowPos, blockPos, multiplier) {
     const newValue = store.board[rowPos][blockPos] * multiplier;
     store.board[rowPos][blockPos] = newValue;
     row.children[blockPos].textContent = newValue;
     store.updateScore(newValue);
-    store.updateLastMove([rowPos, row]);
-    setTimeout(() => {
-      mergeSimilarBlocks(store);
-    }, 300);
+    store.updateLastMove([rowPos, row, row.children[blockPos]]);
   }
   return { mergeSimilarBlocks };
 }

@@ -1,7 +1,7 @@
 <template>
   <span
     draggable="true"
-    class="block border shadow rounded bg-dark fw-bold text-white d-inline-flex justify-content-center align-items-center m-0 p-0"
+    class="block border shadow rounded fw-bold text-dark d-inline-flex justify-content-center align-items-center m-0 p-0"
     >{{ value }}</span
   >
 </template>
