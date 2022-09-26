@@ -12,11 +12,7 @@
         </div>
       </div>
       <div class="game-board row rounded mt-4">
-        <SingleRow
-          v-for="pos in 5"
-          :key="pos"
-          :rowPos="pos"
-        />
+        <SingleRow v-for="pos in 5" :key="pos" :rowPos="pos" />
       </div>
       <div class="next mt-5">
         <single-block :value="store.currentBlockValue"></single-block>
@@ -38,7 +34,7 @@ export default {
 
     return { store };
   },
- 
+
   mounted() {
     // this.createDigit();
   },
@@ -57,8 +53,8 @@ export default {
   // max-height: 452px !important;
   // box-shadow: 0px 0px 35px 10px black;
   padding: 15px;
-  box-shadow: inset -10px -10px 15px rgba(255, 255, 255, 0.8),
-    inset 10px 10px 15px rgba(70, 70, 70, 0.8);
+  box-shadow: inset 10px 10px 15px rgba(70, 70, 70, 0.8);
+  background: rgba(210, 227, 243, 0.5);
 }
 .score {
   font-family: "Raleway" !important;

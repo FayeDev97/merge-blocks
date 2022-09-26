@@ -1,6 +1,6 @@
 <template>
   <div
-    class="single-row col bg-darkgray border border-dark rounded m-0 p-0"
+    class="single-row col border border-dark rounded m-0 p-0"
     @dragover="blockDefault"
     @drop="moveBlockEvent"
     @click="moveBlockEvent"
@@ -51,6 +51,9 @@ export default {
 </script>
 
 <style scoped>
+.single-row {
+  background-color: #cdf3f13f;
+}
 .single-row:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.945) !important;

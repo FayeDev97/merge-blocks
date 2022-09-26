@@ -58,7 +58,7 @@ export default {
   box-sizing: border-box;
 }
 .game {
-  background-color: #dde1e7;
+  background-image: linear-gradient(120deg, #380036, #0cbaba);
 }
 .bg-darkgray {
   background-color: rgba(119, 111, 111, 0.753);
@@ -66,18 +66,15 @@ export default {
 
 /* Animation & transition */
 .fading-to-right {
-  background: rgb(221, 14, 14) !important;
   transform: translateX(70px);
-  transition: ease-out 0.2s;
+  transition: linear 0.2s;
 }
 .fading-to-left {
-  background: rgb(221, 14, 14) !important;
   transform: translateX(-70px);
-  transition: ease-out 0.2s;
+  transition: linear 0.2s;
 }
 .fading-to-bottom {
-  background: rgb(221, 14, 14) !important;
   transform: translateY(-70px);
-  transition: ease-out 0.2s;
+  transition: linear 0.2s;
 }
 </style>
