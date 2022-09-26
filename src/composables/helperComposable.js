@@ -27,9 +27,9 @@ export function useHelperComposable() {
       hsl = store.blocksBackgroundColor[value];
     } else {
       const factor = Math.round(Math.log(value) / Math.log(2));
-      const saturation = factor * 10;
-      const hue = 30 + Math.round(factor * 2.5);
-      const lightness = 75 - Math.round(factor * 2.5);
+      const saturation = 50;
+      const hue = 0 + Math.round(factor * 6);
+      const lightness = 65 - Math.round(factor * 4);
       hsl = `hsl(${hue},${saturation}%,${lightness}%)`;
       store.updateBlocksBackgroundColor(value, hsl);
     }
