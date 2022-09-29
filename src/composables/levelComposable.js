@@ -14,6 +14,7 @@ export function useLevelComposable() {
   function raiseLevel(store) {
     const lowestNumber = getlowestNumber(store.level);
     if (!isLowestNumberInBoard(store, lowestNumber)) store.incrementLevel();
+    if (lowestNumber == store.currentBlockValue) store.updateCurrentBlockValue();
   }
   function hasReachedCheckpoint(store) {
     if (store.score >= getCheckpoint(store.level)) return true;
